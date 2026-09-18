@@ -1,0 +1,224 @@
+<!--
+  Template de thumbnail do canal dark. O SKILL.md preenche os placeholders e renderiza
+  com scripts/thumb.js (1280x720 -> 2560x1440). NAO e um gerador de imagem: e HTML
+  deterministico, sem chave, sem ChatGPT.
+
+  Placeholders que o SKILL.md substitui:
+    {{FONTE}}    caminho absoluto do Anton-Regular.ttf (assets/fontes/Anton-Regular.ttf)
+    {{IMG}}      caminho/URL da foto de fundo (JA REDUZIDA pra ~1280px de largura)
+    {{LAYOUT}}   um de: retrato | citacao | anomalia | evidencia | simbolo | manchete | cena
+    {{ACENTO}}   cor de destaque. #f2c230 (amarelo, o que mais aparece nos vencedores BR)
+                 ou #e8804f (brasa). UMA cor por canal, nunca troca entre videos.
+    {{TAMANHO}}  font-size da manchete em px (ver tabela abaixo). Se ficar vazio, cai no
+                 default do layout.
+    {{TITULO}}   a manchete em LINHAS (ver "como escrever o titulo" abaixo). Pode ser vazio
+                 no layout anomalia.
+    {{MARCA}}    marca de anotacao (seta / circulo) ou vazio. Snippets prontos abaixo.
+    {{SELO}}     opcional: numero/palavra de destaque (ex: "1969", "O FIM"), ou vazio
+
+  ---------------------------------------------------------------------------------
+  OS DOIS ARQUETIPOS (medido em 12 pares outlier-x-mediana do MESMO canal: mesma audiencia,
+  mesmo template, entao o que sobra de diferenca e o que fez o video estourar)
+
+  ARQUETIPO A — A IMAGEM MANDA. Misterio, caso real, documentario, "isso existe?".
+    0 a 4 palavras, as vezes ZERO texto. Uma anomalia visual. Layouts: anomalia,
+    evidencia, cena, simbolo.
+
+  ARQUETIPO B — O TEXTO MANDA. Estoicismo, motivacao, dinheiro, conselho, listas.
+    5 a 9 palavras em 3 a 5 LINHAS, caixa alta, ocupando 50-70% do quadro, alternando
+    branco e acento. Layouts: retrato, citacao, manchete.
+
+  NAO existe regra de "maximo 4 palavras" pros dois. O campeao da amostra (408x a
+  mediana do canal) tem 7 palavras. Quem manda e o arquetipo.
+  ---------------------------------------------------------------------------------
+
+  COMO ESCREVER O TITULO (o texto e COPY, nao rotulo):
+
+    <span class="l">ENVERGONHE</span>
+    <span class="l">QUEM NAO</span>
+    <span class="l a">TE RESPEITA</span>
+
+    .l    = uma linha (branca)
+    .l.a  = linha na cor de ACENTO. Cai na PUNCHLINE, nunca no tema.
+            (medido: "envergonhe quem nao TE RESPEITA" fez 19x "O DESAPEGO muda tudo",
+            com arte IDENTICA nos dois. So mudou a frase e onde caiu o destaque.)
+    .l.cx = linha dentro de uma caixa cheia da cor de acento (a punchline de citacao)
+    <b>   = uma palavra solta no acento, dentro de uma linha branca
+
+  Tabela de {{TAMANHO}} (pra nao estourar a margem, ja contando o line-height 1.12):
+    2 linhas -> 168px   3 linhas -> 132px   4 linhas -> 104px   5 linhas -> 86px
+    (layout manchete cabe mais: 2 linhas -> 200px, 3 linhas -> 160px)
+
+  ---------------------------------------------------------------------------------
+  OS 7 LAYOUTS
+
+    retrato   [B] bloco de texto de 3-5 linhas na METADE ESQUERDA, sujeito (busto,
+              estatua, retrato, criatura) no terco direito. O layout mais usado pelos
+              vencedores de estoicismo/motivacao/dinheiro.
+    citacao   [B] retrato de autoridade RECONHECIVEL a esquerda + fala entre aspas a
+              direita, ultima linha em caixa (.l.cx). So funciona com gente que o
+              espectador reconhece; cara desconhecido derruba (medido).
+    anomalia  [A] foto unica de algo que nao deveria existir. Titulo VAZIO ou 2 palavras.
+              Quase sempre pede {{MARCA}} (seta) apontando o que olhar.
+    evidencia [A] estetica de mural de investigacao: fundo escuro, circulo vermelho no
+              rosto/objeto, nome numa etiqueta clara embaixo. Caso real, desaparecimento.
+    simbolo   [A] foto com 1 objeto/simbolo do nicho a DIREITA, manchete no terco ESQUERDO.
+    manchete  [B] manchete GIGANTE ocupando 60-70% do quadro sobre fundo escurecido.
+    cena      [A] cena ampla com profundidade, manchete na FAIXA INFERIOR esquerda.
+
+  ---------------------------------------------------------------------------------
+  MARCAS DE ANOTACAO ({{MARCA}}) — a arma mais barata que existe.
+  Aparece em 4 dos 12 vencedores medidos e em NENHUM dos medianos. Nao decora: obriga o
+  olho a caçar e cria a pergunta. Use NO MAXIMO UMA por thumb.
+
+  Seta (aponta o que o espectador tem que achar):
+    <svg class="marca" style="left:46%; top:14%; width:300px; transform:rotate(8deg)"
+         viewBox="0 0 120 80"><path class="mk-l" d="M4 12 C 46 6, 86 22, 104 56"/>
+    <path class="mk-f" d="M104 70 L88 44 L118 40 Z"/></svg>
+
+  Circulo (marca a evidencia num rosto/objeto):
+    <div class="marca circulo" style="left:12%; top:18%; width:280px; height:330px;
+         transform:rotate(-6deg)"></div>
+
+  ---------------------------------------------------------------------------------
+  REGRAS QUE NAO AFROUXAM:
+  - Texto GRANDE (a thumb e vista em ~160px no celular) e contraste EXTREMO.
+  - Fuja do centro morto. Deixe o CANTO INFERIOR DIREITO livre (selo de duracao do YouTube).
+  - UMA unica cor de acento no canal inteiro. O vermelho entra so como MARCA (seta,
+    circulo, caixa), nunca como fundo.
+  - 1 assunto so. Todo mediano da amostra tinha mais tralha no quadro que o outlier.
+  - Revelacao PARCIAL ganha de revelacao total (criatura cortada na borda > criatura inteira).
+  - A imagem tem que PAGAR a promessa do texto ("atraente" com casal = 408x; "atraente"
+    com guerreiro bravo = afundou).
+  - Margem segura de 64px (5%) em todos os lados.
+  - Sem gradiente roxo, sem tudo centralizado, sem cantos de card, sem fonte fina, sem Inter.
+-->
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: 'Anton'; src: url('{{FONTE}}'); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; background: #000; }
+  body { --acento: {{ACENTO}}; --marca: #ff2015; }
+  .thumb {
+    position: relative; width: 1280px; height: 720px;
+    background: #0d0b0a url('{{IMG}}') center/cover no-repeat;
+    font-family: 'Anton', Impact, 'Arial Black', sans-serif;
+  }
+  /* vinheta radial: puxa o olho pro centro e escurece as bordas */
+  .thumb::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(120% 90% at 50% 45%, transparent 40%, rgba(0,0,0,.72) 100%);
+  }
+  /* scrim direcional: o degrade escuro que segura a legibilidade do texto (varia por layout) */
+  .thumb::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+  .wrap { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column;
+          padding: 64px; }
+
+  .selo {
+    align-self: flex-start; color: #0d0b0a; background: var(--acento);
+    font-size: 42px; line-height: 1.35; padding: 4px 20px; letter-spacing: 2px;
+    text-transform: uppercase; box-shadow: 0 4px 0 rgba(0,0,0,.45);
+  }
+  .selo:empty { display: none; }
+
+  .titulo {
+    /* line-height 1.12 e o PISO. A cedilha do Anton desce muito: abaixo disso o rabinho do C
+       de uma linha bate na letra da linha de baixo (medido no render, em AÇÃO / E CORAÇÃO).
+       Nao aperte pra ficar "mais punk" — quebra em portugues. */
+    color: #f7f2e8; text-transform: uppercase; line-height: 1.12; letter-spacing: 0;
+    /* stroke MODERADO (3px) + sombra: junto com o scrim, mantem acento (til/cedilha) limpo,
+       diferente do stroke 4px que engrossava demais o til */
+    -webkit-text-stroke: 3px #000; paint-order: stroke fill;
+    text-shadow: 0 5px 0 rgba(0,0,0,.85), 0 0 26px rgba(0,0,0,.9);
+    font-size: {{TAMANHO}}px;  /* se o placeholder ficar vazio, vale o default do layout */
+  }
+  .titulo:empty { display: none; }
+  .titulo b { color: var(--acento); font-weight: inherit; -webkit-text-stroke-color: #000; }
+  /* uma linha da manchete */
+  .titulo .l { display: block; }
+  /* .a = a linha da PUNCHLINE, na cor de acento */
+  .titulo .l.a { color: var(--acento); }
+  /* .cx = a linha dentro de uma caixa cheia (usada na punchline de citacao) */
+  /* padding-top generoso de proposito: com line-height .95 o acento (Á, Í, Ã) sobe acima da
+     caixa de linha e a borda do fundo CORTA o acento. Medido no render. Nao reduza. */
+  .titulo .l.cx {
+    display: table; color: #0d0b0a; background: var(--acento);
+    padding: 16px 18px 22px; -webkit-text-stroke: 0; text-shadow: 0 4px 0 rgba(0,0,0,.5);
+  }
+
+  /* ---------- marcas de anotacao: seta e circulo ---------- */
+  .marca { position: absolute; z-index: 3; pointer-events: none;
+           filter: drop-shadow(0 4px 10px rgba(0,0,0,.85)); }
+  .marca .mk-l { fill: none; stroke: var(--marca); stroke-width: 11; stroke-linecap: round; }
+  .marca .mk-f { fill: var(--marca); }
+  .marca.circulo { border: 12px solid var(--marca); border-radius: 50%; }
+
+  /* ---------- layout RETRATO [B]: bloco de texto na esquerda, sujeito na direita ---------- */
+  body.retrato .thumb::after {
+    background: linear-gradient(90deg, rgba(6,5,4,.96) 0%, rgba(6,5,4,.9) 40%,
+                rgba(6,5,4,.45) 62%, rgba(6,5,4,0) 88%);
+  }
+  body.retrato .wrap { justify-content: center; align-items: flex-start; }
+  body.retrato .titulo { font-size: 104px; max-width: 700px; }
+
+  /* ---------- layout CITACAO [B]: autoridade a esquerda, fala a direita ---------- */
+  body.citacao .thumb::after {
+    background: linear-gradient(270deg, rgba(6,5,4,.95) 0%, rgba(6,5,4,.88) 45%,
+                rgba(6,5,4,.4) 68%, rgba(6,5,4,0) 92%);
+  }
+  body.citacao .wrap { justify-content: center; align-items: flex-end; text-align: right; }
+  body.citacao .titulo { font-size: 92px; max-width: 700px; }
+  body.citacao .titulo .l.cx { margin-left: auto; }
+
+  /* ---------- layout ANOMALIA [A]: a foto manda, texto quase nao existe ---------- */
+  body.anomalia .thumb::after {
+    background: linear-gradient(0deg, rgba(6,5,4,.7) 0%, rgba(6,5,4,.12) 34%, rgba(6,5,4,0) 60%);
+  }
+  body.anomalia .wrap { justify-content: flex-end; align-items: flex-start; }
+  body.anomalia .titulo { font-size: 118px; max-width: 720px; }
+
+  /* ---------- layout EVIDENCIA [A]: mural de investigacao, nome na etiqueta ---------- */
+  body.evidencia .thumb::after {
+    background: linear-gradient(0deg, rgba(6,5,4,.88) 0%, rgba(6,5,4,.4) 30%, rgba(6,5,4,.1) 60%);
+  }
+  body.evidencia .wrap { justify-content: flex-end; align-items: flex-start; }
+  body.evidencia .titulo {
+    font-size: 96px; max-width: 760px; color: #12100e; background: #efe7d6;
+    /* topo folgado pro acento (Á/Ã/Ê) e base folgada pra CEDILHA nao ser cortada pela borda */
+    padding: 18px 24px 26px; -webkit-text-stroke: 0;
+    text-shadow: none; box-shadow: 0 6px 0 rgba(0,0,0,.5);
+  }
+  body.evidencia .titulo .l.a { color: #b31710; }
+
+  /* ---------- layout SIMBOLO [A]: texto no terco esquerdo, simbolo aparece a direita ---------- */
+  body.simbolo .thumb::after {
+    background: linear-gradient(90deg, rgba(8,6,5,.94) 0%, rgba(8,6,5,.72) 42%,
+                rgba(8,6,5,.15) 70%, rgba(8,6,5,0) 100%);
+  }
+  body.simbolo .wrap { justify-content: center; align-items: flex-start; }
+  body.simbolo .titulo { font-size: 138px; max-width: 620px; }
+
+  /* ---------- layout MANCHETE [B]: texto gigante ocupando o quadro ---------- */
+  body.manchete .thumb::after {
+    background: linear-gradient(180deg, rgba(8,6,5,.55) 0%, rgba(8,6,5,.68) 100%);
+  }
+  body.manchete .wrap { justify-content: center; align-items: flex-start; }
+  body.manchete .titulo { font-size: 176px; max-width: 1080px; }
+
+  /* ---------- layout CENA [A]: manchete na faixa inferior esquerda ---------- */
+  body.cena .thumb::after {
+    background: linear-gradient(0deg, rgba(8,6,5,.9) 0%, rgba(8,6,5,.55) 28%, rgba(8,6,5,0) 55%);
+  }
+  body.cena .wrap { justify-content: flex-end; align-items: flex-start; }
+  body.cena .titulo { font-size: 118px; max-width: 780px; }
+</style>
+<body class="{{LAYOUT}}">
+  <div class="thumb">
+    {{MARCA}}
+    <div class="wrap">
+      <span class="selo">{{SELO}}</span>
+      <div class="titulo">{{TITULO}}</div>
+    </div>
+  </div>
+</body>

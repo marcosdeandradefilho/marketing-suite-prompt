@@ -1,0 +1,131 @@
+name: copywriting-psychology
+description: Gatilhos psicológicos + framework Cialdini para copy persuasivo
+version: 1.0
+tags:
+  - marketing
+  - copywriting
+  - psychology
+  - persuasion
+
+metadata:
+  frameworks:
+    - Cialdini 6 Principles (reciprocity, authority, liking, consensus, scarcity, urgency)
+    - Hook, Story, Offer (HSO)
+    - Emotional Triggers (fear, joy, curiosity, anger, surprise)
+  use_cases:
+    - Landing page copy
+    - Email headlines
+    - Ad copy
+    - Sales page body
+    - Product descriptions
+
+---
+
+# Copywriting Psychology — Gatilhos Persuasivos
+
+Use esta skill sempre que estiver escrevendo **copy que precisa vender**, não apenas informar.
+
+## Os 6 Princípios de Cialdini
+
+### 1. **Reciprocidade**
+Dê algo valioso ANTES de pedir.
+- "Baixe este checklist grátis (21 itens comprovados)" → email collection
+- "Veja como fizemos R$50k em 30 dias" → prova social primeiro
+
+### 2. **Autoridade**
+Estabeleça credibilidade antes da venda.
+- Cite dados/estudos/certificações
+- "Professor de X anos", "Ajudei 10k pessoas", "Recomendado por [especialista]"
+- Histórias de resultado (case studies com números)
+
+### 3. **Simpatia (Liking)**
+Pessoas compram de quem gostam.
+- Compartilhe vulnerabilidades (antes/depois pessoal)
+- Use humor/ironia apropriada ao público
+- Mostre valores alinhados
+
+### 4. **Consenso (Social Proof)**
+"Se muitos fazem, devo fazer também."
+- Depoimentos de clientes (nomes + fotos + resultados)
+- "Mais de 5k pessoas já compraram"
+- Reviews/ratings públicas
+
+### 5. **Escassez (Scarcity)**
+Limite cria urgência.
+- "Apenas 10 vagas disponíveis"
+- "Oferta termina em 48h"
+- "Preço sobe amanhã"
+⚠️ Use com verdade — nunca invent
+
+### 6. **Urgência (Urgency)**
+Aja agora ou perca.
+- Deadline clara (data/hora específica)
+- "Bônus vence em 24h"
+- Gatilho de escassez + prazo = conversão máxima
+
+## Fórmula HSO (Hook → Story → Offer)
+
+### Hook (primeiros 3 segundos)
+Capte atenção com:
+- Curiosidade ("Você não sabe o que está fazendo de errado")
+- Contraste ("Enquanto X faz Y, você deveria fazer Z")
+- Promessa clara ("Vai triplicar sua produtividade")
+
+### Story (contexto + mímese)
+Conte uma história que:
+- Começa com o problema do seu cliente
+- Mostra a jornada/solução
+- Termina com transformação
+- Sempre: "Eu era assim → fiz isso → virei assim"
+
+### Offer (fechamento)
+Apresente o produto/serviço com:
+- Benefício claro (não features)
+- Social proof (depoimento/número)
+- Gatilho de urgência (prazo/limite)
+- CTA inequívoco
+
+## Emoções que Vendem
+
+- **Medo** — "Se não agir, vai perder oportunidade"
+- **Alegria** — "Você vai se sentir assim quando tiver isso"
+- **Curiosidade** — "Descobrirá um segredo que 99% não sabe"
+- **Raiva** — "As grandes corporations não querem que você saiba disso"
+- **Surpresa** — "Resultado foi 10x maior que esperado"
+
+## Exemplo prático: Landing Page
+
+```
+[HOOK]
+"Você está perdendo R$10k/mês por fazer isso errado"
+
+[STORY]
+"Eu era como você — criava conteúdo meia-boca
+e chegava em 500 seguidores. Até descobrir o
+sistema de 3 passos que depois aplicar,
+50k seguidores em 6 meses. Agora ajudo outros
+criadores com o mesmo framework."
+
+[SOCIAL PROOF]
+"+ de 2.500 criadores já usam (4.9 ⭐ em 500 reviews)"
+
+[OFFER]
+"Acesso ao Masterclass Completo + Checklist
+de Conteúdo (R$297)
+Por apenas R$97 essa semana"
+
+[CTA + URGENCY]
+"❌ Oferta termina AMANHÃ às 23h59"
+[COMPRAR AGORA]
+```
+
+## Quando usar cada princípio
+
+| Contexto | Princípio | Exemplo |
+|----------|-----------|---------|
+| Email cold | Autoridade | "Ajudei 500 empresas a crescer 3x" |
+| Landing page | Escassez + Urgência | "Últimas 5 vagas • Fecha amanhã" |
+| Story/Post | Simpatia | Compartilhe um fracasso pessoal |
+| Anúncio | Curiosidade gap | "Descubra o que as agências cobram R$5k pra fazer" |
+| Produto | Consensus | Depoimentos + números |
+| Follow-up | Reciprocidade | "Criei este guia grátis pra você" |

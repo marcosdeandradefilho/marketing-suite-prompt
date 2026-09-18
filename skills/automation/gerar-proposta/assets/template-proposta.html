@@ -1,0 +1,366 @@
+<!doctype html>
+<!--
+  template-proposta.html — PREMIUM commercial-proposal DECK (A4 landscape slides), self-contained.
+  Design DNA (from agency references): cinematic dark cover, HUGE two-tone display type, single strong
+  accent + glow, oversized ghost watermark, icon cards, big number callouts, editorial asymmetry.
+
+  HOW TO USE (skill, internal):
+   1) Pick a THEME: set data-theme on <html> ("meia-noite" | "petroleo" | "esmeralda" | "vinho" |
+      "grafite-claro") OR override the :root tokens directly (cores + fontes) per reference/design-system.md.
+   2) Replace every {{TOKEN}}; fill/remove sections; for icon cards use <svg class="ic"><use href="#i-xxx"/></svg>.
+   3) Logo: base64 in {{LOGO_DATA_URI}} (headless ignores url() — base64 only) OR remove the <img> for a text mark.
+   4) Pix is OPTIONAL: keep the .pay-pix block ONLY if the user opted in; otherwise DELETE it (the
+      .pay-terms block alone is the default). Paste the pix.js <svg> into {{PIX_QR_SVG}}.
+   5) DELETE any optional slide you don't use (prova social, 3-tier pricing). NO {{TOKEN}}/lorem may survive.
+   Sizes in mm/pt (print-stable). Backgrounds print via print-color-adjust:exact. Render: A4 landscape.
+-->
+<html lang="pt-BR" data-theme="meia-noite">
+<head>
+<meta charset="utf-8">
+<title>Proposta para {{CLIENTE_NOME}}</title>
+<style>
+  /* ============ THEME TOKENS ============ */
+  :root{
+    --bg:#0b0d12; --bg-2:#141823; --panel:#161b27; --line:rgba(255,255,255,.10);
+    --ink:#f4f6fb; --ink-2:#9aa6ba; --ink-3:#5f6b80;
+    --accent:#ff6a2b; --accent-2:#ffae73; --on-accent:#1a0f06;
+    --glow:rgba(255,106,43,.55);
+    --fonte-titulo:'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;
+    --fonte-corpo:'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;
+  }
+  html[data-theme="petroleo"]{ --bg:#091016; --bg-2:#101c24; --panel:#10202a; --accent:#3fb6c9; --accent-2:#8fe3ef; --glow:rgba(63,182,201,.5); --on-accent:#04141a; }
+  html[data-theme="esmeralda"]{ --bg:#08120e; --bg-2:#0f2019; --panel:#0f2219; --accent:#36c98a; --accent-2:#8ff0c4; --glow:rgba(54,201,138,.5); --on-accent:#04140d; }
+  html[data-theme="vinho"]{ --bg:#120a0e; --bg-2:#23121a; --panel:#22121a; --accent:#e0457a; --accent-2:#ff93b6; --glow:rgba(224,69,122,.5); --on-accent:#1a060f; }
+  /* light editorial theme (for sectors that shouldn't be dark) */
+  html[data-theme="grafite-claro"]{ --bg:#f4f6fa; --bg-2:#ffffff; --panel:#ffffff; --line:rgba(15,23,42,.10);
+    --ink:#0f172a; --ink-2:#475569; --ink-3:#94a3b8; --accent:#2563eb; --accent-2:#1e40af; --glow:rgba(37,99,235,.18); --on-accent:#ffffff; }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{ size:A4 landscape; margin:0; }
+  html,body{ background:var(--bg); }
+  body{ font-family:var(--fonte-corpo); color:var(--ink);
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; -webkit-font-smoothing:antialiased; }
+
+  /* one A4-landscape slide per page */
+  .slide{ position:relative; width:297mm; height:209.5mm; overflow:hidden;
+    background:var(--bg); padding:18mm 20mm; page-break-after:always; display:flex; flex-direction:column; }
+  .slide:last-child{ page-break-after:auto; }
+
+  /* typography */
+  h1,h2,h3,.display{ font-family:var(--fonte-titulo); line-height:1.02; letter-spacing:-.01em; }
+  .display{ font-size:74pt; font-weight:800; }
+  .display .lite{ color:var(--ink-2); font-weight:300; display:block; }
+  .display .acc{ background:linear-gradient(92deg,var(--accent),var(--accent-2)); -webkit-background-clip:text;
+    background-clip:text; -webkit-text-fill-color:transparent; color:var(--accent); }
+  .h-sec{ font-size:46pt; font-weight:800; }
+  .h-sec .acc{ color:var(--accent); }
+  .kicker{ font-family:var(--fonte-titulo); font-size:10pt; font-weight:700; letter-spacing:.28em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:10pt; }
+  p{ font-size:13pt; line-height:1.6; color:var(--ink-2); max-width:50em; }
+  p strong, .ink{ color:var(--ink); font-weight:600; }
+  .lead{ font-size:16pt; line-height:1.55; color:var(--ink); max-width:42em; }
+
+  /* decorative: glow + ghost watermark + accent rule */
+  .glow{ position:absolute; border-radius:50%; filter:blur(60px); opacity:.9; pointer-events:none; }
+  .glow.tr{ width:520pt; height:520pt; right:-160pt; top:-220pt;
+    background:radial-gradient(closest-side,var(--glow),transparent 70%); }
+  .ring{ position:absolute; right:-130pt; top:-260pt; width:560pt; height:560pt; border-radius:50%;
+    border:3pt solid var(--accent); box-shadow:0 0 50pt 6pt var(--glow); opacity:.55; }
+  .wm{ position:absolute; right:-8pt; bottom:-46pt; font-family:var(--fonte-titulo); font-weight:800;
+    font-size:200pt; line-height:.8; letter-spacing:-.04em; color:transparent; -webkit-text-stroke:1.5pt var(--line);
+    pointer-events:none; user-select:none; }
+  .rule{ height:3pt; width:54pt; background:var(--accent); border-radius:2pt; margin:14pt 0 18pt; }
+  .footer{ position:absolute; left:20mm; right:20mm; bottom:11mm; display:flex; justify-content:space-between;
+    font-family:var(--fonte-titulo); font-size:8.5pt; color:var(--ink-3); letter-spacing:.04em;
+    border-top:1px solid var(--line); padding-top:7pt; }
+  .num{ position:absolute; right:20mm; top:16mm; font-family:var(--fonte-titulo); font-weight:800;
+    font-size:13pt; color:var(--ink-3); }
+
+  /* cover */
+  .cover{ justify-content:center; }
+  .cover .brand{ position:absolute; left:20mm; top:16mm; display:flex; align-items:center; gap:10pt; }
+  .cover .brand img{ max-height:30pt; max-width:130pt; }
+  .cover .brand .bname{ font-family:var(--fonte-titulo); font-weight:700; font-size:13pt; color:var(--ink); }
+  .badge{ display:inline-block; align-self:flex-start; padding:6pt 16pt; border-radius:999pt;
+    background:linear-gradient(92deg,var(--accent),var(--accent-2)); color:var(--on-accent);
+    font-family:var(--fonte-titulo); font-weight:700; font-size:11pt; margin-bottom:16pt; }
+  .cover .meta{ position:absolute; left:20mm; bottom:18mm; display:flex; gap:40pt;
+    font-family:var(--fonte-titulo); font-size:10.5pt; color:var(--ink-2); }
+  .cover .meta b{ display:block; color:var(--ink); font-size:11.5pt; }
+  .cover .meta .lbl{ color:var(--accent); font-size:8.5pt; letter-spacing:.22em; text-transform:uppercase; }
+
+  /* editorial split: headline left, content right */
+  .split{ display:flex; gap:34pt; flex:1; align-items:flex-start; }
+  .split .left{ width:38%; }
+  .split .right{ flex:1; }
+
+  /* icon cards */
+  .cards{ display:flex; gap:14pt; margin-top:10pt; flex-wrap:wrap; }
+  .card{ flex:1; min-width:150pt; background:linear-gradient(180deg,var(--panel),var(--bg-2));
+    border:1px solid var(--line); border-radius:12pt; padding:16pt; position:relative; }
+  .card .icbox{ width:34pt; height:34pt; border-radius:9pt; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(150deg,var(--accent),var(--accent-2)); box-shadow:0 6pt 22pt -4pt var(--glow); margin-bottom:12pt; }
+  .card .icbox .ic{ width:18pt; height:18pt; color:var(--on-accent); }
+  .card h3{ font-size:13.5pt; font-weight:700; color:var(--ink); margin-bottom:5pt; }
+  .card p{ font-size:10.5pt; color:var(--ink-2); }
+  .ic{ width:20pt; height:20pt; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+
+  /* callout */
+  .callout{ display:flex; align-items:center; gap:14pt; background:var(--panel); border:1px solid var(--line);
+    border-left:4pt solid var(--accent); border-radius:10pt; padding:14pt 18pt; }
+  .callout .icbox{ width:34pt;height:34pt;border-radius:9pt;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,var(--accent),var(--accent-2));color:var(--on-accent);flex:0 0 auto; }
+  .callout .icbox .ic{width:18pt;height:18pt;color:var(--on-accent)}
+
+  /* scope two columns */
+  .scope{ display:flex; gap:18pt; flex:1; }
+  .scope .col{ flex:1; background:var(--panel); border:1px solid var(--line); border-radius:12pt; padding:18pt 20pt; }
+  .scope .col.no{ opacity:.85; }
+  .scope h3{ font-size:14pt; color:var(--ink); margin-bottom:12pt; display:flex; align-items:center; gap:8pt; }
+  .scope ul{ list-style:none; }
+  .scope li{ font-size:11.5pt; color:var(--ink-2); padding:6pt 0 6pt 24pt; position:relative; border-bottom:1px solid var(--line); }
+  .scope li:last-child{ border-bottom:0; }
+  .scope li::before{ content:""; position:absolute; left:0; top:10pt; width:12pt; height:12pt; }
+  .scope .yes li::before{ background:var(--accent); -webkit-mask:var(--check) center/contain no-repeat; mask:var(--check) center/contain no-repeat; }
+  .scope .no li::before{ background:var(--ink-3); border-radius:50%; width:7pt; height:7pt; top:12pt; }
+
+  /* timeline */
+  .timeline{ display:flex; gap:0; flex:1; align-items:stretch; margin-top:14pt; }
+  .timeline .step{ flex:1; padding:0 16pt; border-left:1px solid var(--line); position:relative; }
+  .timeline .step:first-child{ border-left:0; padding-left:0; }
+  .timeline .step .n{ font-family:var(--fonte-titulo); font-weight:800; font-size:40pt;
+    background:linear-gradient(180deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; line-height:1; margin-bottom:10pt; }
+  .timeline .step h3{ font-size:13pt; color:var(--ink); margin-bottom:6pt; }
+  .timeline .step p{ font-size:10.5pt; }
+
+  /* pricing */
+  .price-hero{ display:flex; align-items:flex-end; gap:18pt; margin:6pt 0 12pt; }
+  .price-big{ font-family:var(--fonte-titulo); font-weight:800; font-size:64pt; line-height:.9;
+    background:linear-gradient(92deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .price-sub{ font-size:12pt; color:var(--ink-2); padding-bottom:8pt; }
+  .tiers{ display:flex; gap:14pt; flex:1; }
+  .tier{ flex:1; background:var(--panel); border:1px solid var(--line); border-radius:12pt; padding:18pt; }
+  .tier.reco{ border:2pt solid var(--accent); box-shadow:0 10pt 40pt -12pt var(--glow); }
+  .tier .tag{ font-size:8.5pt; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-weight:700; }
+  .tier h3{ font-size:15pt; color:var(--ink); margin:4pt 0 8pt; }
+  .tier .v{ font-family:var(--fonte-titulo); font-weight:800; font-size:26pt; color:var(--ink); margin:8pt 0; }
+  .tier .v small{ font-size:11pt; color:var(--ink-2); font-weight:400; }
+  .tier ul{ list-style:none; } .tier li{ font-size:10.5pt; color:var(--ink-2); padding:4pt 0; }
+  /* "incluído no valor" strip: fills the single-price slide so it never looks empty */
+  .incluso{ display:flex; gap:14pt; margin-top:26pt; }
+  .incluso .it{ flex:1; display:flex; gap:10pt; align-items:flex-start; background:var(--panel);
+    border:1px solid var(--line); border-radius:10pt; padding:13pt 15pt; }
+  .incluso .it .icbox{ width:28pt;height:28pt;border-radius:8pt;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,var(--accent),var(--accent-2));color:var(--on-accent);flex:0 0 auto; }
+  .incluso .it .icbox .ic{ width:15pt;height:15pt; }
+  .incluso .it b{ color:var(--ink); font-size:11.5pt; display:block; }
+  .incluso .it span{ color:var(--ink-2); font-size:9.5pt; }
+
+  /* guarantee */
+  .guarantee{ background:linear-gradient(120deg,var(--panel),var(--bg-2)); border:1px solid var(--line);
+    border-radius:14pt; padding:24pt 28pt; display:flex; gap:18pt; align-items:center; }
+  .guarantee .icbox{ width:46pt;height:46pt;border-radius:12pt;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,var(--accent),var(--accent-2));color:var(--on-accent);flex:0 0 auto; }
+  .guarantee .icbox .ic{ width:24pt;height:24pt; }
+  .guarantee .lead{ max-width:none; }
+
+  /* payment */
+  .pay{ display:flex; gap:18pt; flex:1; }
+  .pay-terms{ flex:1; }
+  .pay-pix{ flex:0 0 auto; width:230pt; background:var(--panel); border:1px solid var(--line); border-radius:12pt; padding:16pt; text-align:center; }
+  .pay-pix .qr{ width:150pt; height:150pt; margin:6pt auto 8pt; background:#fff; padding:8pt; border-radius:8pt; }
+  .pay-pix .qr svg{ width:100%; height:100%; display:block; }
+  .pay-pix .code{ font-family:Consolas,'Courier New',monospace; font-size:6.5pt; color:var(--ink-3);
+    word-break:break-all; background:var(--bg-2); border:1px solid var(--line); border-radius:6pt; padding:6pt; margin-top:6pt; }
+
+  /* CTA closing slide */
+  .closing{ justify-content:center; align-items:flex-start; }
+  .btn{ display:inline-flex; align-items:center; gap:10pt; background:linear-gradient(92deg,var(--accent),var(--accent-2));
+    color:var(--on-accent); font-family:var(--fonte-titulo); font-weight:700; font-size:14pt; padding:13pt 26pt;
+    border-radius:999pt; margin-top:18pt; box-shadow:0 12pt 40pt -10pt var(--glow); }
+  .btn .ic{ width:18pt; height:18pt; color:var(--on-accent); }
+  .contact-row{ display:flex; gap:34pt; margin-top:26pt; font-family:var(--fonte-titulo); font-size:11pt; color:var(--ink-2); }
+  .contact-row b{ display:block; color:var(--ink); }
+  .contact-row .lbl{ color:var(--accent); font-size:8pt; letter-spacing:.2em; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<!-- inline icon set (no emoji). Use <svg class="ic"><use href="#i-xxx"/></svg>. Swap ids per content. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 16v-4"/><path d="M13 16V8"/><path d="M18 16v-7"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3 4 14h6l-1 7 9-11h-6z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M5 15c-1 1-1.5 4-1.5 4s3-.5 4-1.5"/><path d="M14 4c4 1 6 4 6 9-3 0-5 1-7 3-1-1-3-3-4-4 2-2 3-5 5-8z"/><path d="M9 11l-4 1"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16z"/><path d="M14 6l4 4"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M4 10v4h4l8 5V5l-8 5z"/><path d="M19 9a3 3 0 0 1 0 6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 6a3 3 0 0 1 0 6"/><path d="M21 20c0-2-1-3.5-3-4.3"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</defs></svg>
+
+<!-- ============ 01 · CAPA ============ -->
+<section class="slide cover">
+  <span class="glow tr"></span><span class="ring"></span>
+  <span class="wm">{{WATERMARK}}</span>
+  <div class="brand">
+    <img src="{{LOGO_DATA_URI}}" alt="">
+    <span class="bname">{{EMPRESA_FREELANCER}}</span>
+  </div>
+  <span class="badge">{{ANO}} · Proposta comercial</span>
+  <h1 class="display"><span class="lite">Proposta de</span><span class="acc">{{SERVICO_CURTO}}</span></h1>
+  <p class="lead" style="margin-top:14pt">para <span class="ink">{{CLIENTE_NOME}}</span></p>
+  <div class="meta">
+    <div><span class="lbl">Preparada por</span><b>{{NOME_FREELANCER}}</b>{{CONTATO_FREELANCER}}</div>
+    <div><span class="lbl">Data</span><b>{{DATA_EXTENSO}}</b></div>
+    <div><span class="lbl">Validade</span><b>{{VALIDADE}}</b></div>
+  </div>
+</section>
+
+<!-- ============ 02 · RESUMO ============ -->
+<section class="slide">
+  <span class="num">02</span>
+  <div class="kicker">Resumo</div>
+  <h2 class="h-sec">O essencial, <span class="acc">direto</span></h2>
+  <div class="rule"></div>
+  <p class="lead">{{RESUMO_EXECUTIVO}}</p>
+  <div class="callout" style="margin-top:auto;max-width:60%">
+    <span class="icbox"><svg class="ic"><use href="#i-target"/></svg></span>
+    <div><span class="ink" style="font-size:13pt">{{RESUMO_DESTAQUE}}</span></div>
+  </div>
+  <div class="footer"><span>{{EMPRESA_FREELANCER}}</span><span>Proposta · {{CLIENTE_NOME}}</span></div>
+</section>
+
+<!-- ============ 03 · DIAGNÓSTICO / O DESAFIO ============ -->
+<section class="slide">
+  <span class="glow tr"></span><span class="wm">{{WATERMARK}}</span><span class="num">03</span>
+  <div class="kicker">Contexto</div>
+  <h2 class="h-sec">O <span class="acc">desafio</span> de {{CLIENTE_NOME}}</h2>
+  <div class="rule"></div>
+  <p class="lead" style="margin-bottom:8pt">{{DIAGNOSTICO_DOR}}</p>
+  <!-- 2-3 pain/point cards. Trocar os <use href> e textos. -->
+  <div class="cards">
+    <div class="card"><span class="icbox"><svg class="ic"><use href="#i-monitor"/></svg></span><h3>{{DOR_1_TITULO}}</h3><p>{{DOR_1_TEXTO}}</p></div>
+    <div class="card"><span class="icbox"><svg class="ic"><use href="#i-megaphone"/></svg></span><h3>{{DOR_2_TITULO}}</h3><p>{{DOR_2_TEXTO}}</p></div>
+    <div class="card"><span class="icbox"><svg class="ic"><use href="#i-chart"/></svg></span><h3>{{DOR_3_TITULO}}</h3><p>{{DOR_3_TEXTO}}</p></div>
+  </div>
+  <div class="footer"><span>{{EMPRESA_FREELANCER}}</span><span>Proposta · {{CLIENTE_NOME}}</span></div>
+</section>
+
+<!-- ============ 04 · SOLUÇÃO ============ -->
+<section class="slide">
+  <span class="num">04</span>
+  <div class="split">
+    <div class="left">
+      <div class="kicker">Solução</div>
+      <h2 class="h-sec">Como a gente <span class="acc">resolve</span></h2>
+      <div class="rule"></div>
+      <p>{{SOLUCAO}}</p>
+    </div>
+    <div class="right">
+      <div class="cards" style="flex-direction:column">
+        <div class="card"><span class="icbox"><svg class="ic"><use href="#i-bolt"/></svg></span><h3>{{SOL_1_TITULO}}</h3><p>{{SOL_1_TEXTO}}</p></div>
+        <div class="card"><span class="icbox"><svg class="ic"><use href="#i-check"/></svg></span><h3>{{SOL_2_TITULO}}</h3><p>{{SOL_2_TEXTO}}</p></div>
+        <div class="card"><span class="icbox"><svg class="ic"><use href="#i-rocket"/></svg></span><h3>{{SOL_3_TITULO}}</h3><p>{{SOL_3_TEXTO}}</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>{{EMPRESA_FREELANCER}}</span><span>Proposta · {{CLIENTE_NOME}}</span></div>
+</section>
+
+<!-- ============ 05 · ESCOPO ============ -->
+<section class="slide">
+  <span class="num">05</span>
+  <div class="kicker">Escopo</div>
+  <h2 class="h-sec">O que <span class="acc">entra</span>, e o que não</h2>
+  <div class="rule"></div>
+  <div class="scope">
+    <div class="col yes"><h3><svg class="ic" style="color:var(--accent)"><use href="#i-check"/></svg> Incluso</h3><ul>{{ESCOPO_INCLUSO}}</ul></div>
+    <div class="col no"><h3>Não incluso</h3><ul>{{ESCOPO_NAO_INCLUSO}}</ul></div>
+  </div>
+  <div class="footer"><span>{{EMPRESA_FREELANCER}}</span><span>Proposta · {{CLIENTE_NOME}}</span></div>
+</section>
+
+<!-- ============ 06 · CRONOGRAMA ============ -->
+<section class="slide">
+  <span class="num">06</span>
+  <div class="kicker">Cronograma</div>
+  <h2 class="h-sec">As <span class="acc">etapas</span></h2>
+  <div class="rule"></div>
+  <!-- 3-4 steps. n = número grande. -->
+  <div class="timeline">{{CRONOGRAMA_STEPS}}</div>
+  <div class="footer"><span>{{EMPRESA_FREELANCER}}</span><span>Proposta · {{CLIENTE_NOME}}</span></div>
+</section>
+
+<!-- ============ 07 · INVESTIMENTO ============ -->
+<section class="slide">
+  <span class="glow tr"></span><span class="num">07</span>
+  <div class="kicker">Investimento</div>
+  <h2 class="h-sec">O <span class="acc">investimento</span></h2>
+  <div class="rule"></div>
+  <!-- OPÇÃO A — preço único (hero grande + faixa "incluído no valor" pra encher a slide): -->
+  {{BLOCO_PRECO_UNICO}}
+  <!-- exemplo do hero único (use SEMPRE a faixa .incluso no caminho de preço único, senão a slide fica vazia):
+  <div class="price-hero"><div class="price-big">R$ 1.500<small style="font-size:18pt;color:var(--ink-2)">/mês</small></div>
+    <div class="price-sub">{{NOTA_PRECO}}</div></div>
+  <p>{{DETALHE_PRECO}}</p>
+  <div class="incluso">
+    <div class="it"><span class="icbox"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Item 1</b><span>detalhe curto</span></div></div>
+    <div class="it"><span class="icbox"><svg class="ic"><use href="#i-bolt"/></svg></span><div><b>Item 2</b><span>detalhe curto</span></div></div>
+    <div class="it"><span class="icbox"><svg class="ic"><use href="#i-chart"/></svg></span><div><b>Item 3</b><span>detalhe curto</span></div></div>
+  </div> -->
+  <!-- OPÇÃO B — 3 níveis (substitui o bloco acima); marque o do meio com class="tier reco":
+  <div class="tiers">
+    <div class="tier"><span class="tag">Essencial</span><h3>...</h3><div class="v">R$ X</div><ul><li>...</li></ul></div>
+    <div class="tier reco"><span class="tag">Mais escolhido</span><h3>...</h3><div class="v">R$ Y</div><ul><li>...</li></ul></div>
+    <div class="tier"><span class="tag">Completo</span><h3>...</h3><div class="v">R$ Z</div><ul><li>...</li></ul></div>
+  </div> -->
+  <div class="footer"><span>{{EMPRESA_FREELANCER}}</span><span>Proposta · {{CLIENTE_NOME}}</span></div>
+</section>
+
+<!-- ============ 08 · (OPCIONAL) PROVA SOCIAL — só se fornecida; senão DELETE a slide ============ -->
+<!-- {{SLIDE_PROVA_SOCIAL}} -->
+
+<!-- ============ 09 · GARANTIA + CONDIÇÕES ============ -->
+<section class="slide">
+  <span class="num">08</span>
+  <div class="kicker">Garantia</div>
+  <h2 class="h-sec">Seu <span class="acc">risco</span> é baixo</h2>
+  <div class="rule"></div>
+  <div class="guarantee">
+    <span class="icbox"><svg class="ic"><use href="#i-shield"/></svg></span>
+    <p class="lead">{{GARANTIA}}</p>
+  </div>
+
+  <div class="kicker" style="margin-top:20pt">Condições</div>
+  <div class="pay">
+    <div class="pay-terms"><p>{{CONDICOES_PAGAMENTO}}</p></div>
+    <!-- PIX É OPCIONAL: manter a .pay-pix SÓ se o usuário pediu Pix; senão DELETAR este bloco inteiro. -->
+    <div class="pay-pix">
+      <div class="ink" style="font-weight:700;font-size:11pt">Pague a entrada no Pix</div>
+      <div class="qr">{{PIX_QR_SVG}}</div>
+      <div style="font-size:8.5pt;color:var(--ink-2)">Aponte a câmera do banco, ou copie:</div>
+      <div class="code">{{PIX_COPIA_E_COLA}}</div>
+    </div>
+  </div>
+  <div class="footer"><span>{{EMPRESA_FREELANCER}}</span><span>Proposta · {{CLIENTE_NOME}}</span></div>
+</section>
+
+<!-- ============ 10 · CTA / FECHAMENTO ============ -->
+<section class="slide closing">
+  <span class="glow tr"></span><span class="ring"></span><span class="wm">{{WATERMARK}}</span>
+  <div class="kicker">Próximo passo</div>
+  <h2 class="display" style="font-size:58pt">{{CTA_TITULO}}</h2>
+  <p class="lead" style="margin-top:14pt">{{CTA_TEXTO}}</p>
+  <span class="btn">{{CTA_BOTAO}} <svg class="ic"><use href="#i-arrow"/></svg></span>
+  <div class="contact-row">
+    <div><span class="lbl">Falar comigo</span><b>{{NOME_FREELANCER}}</b>{{CONTATO_FREELANCER}}</div>
+    <div><span class="lbl">Validade da proposta</span><b>{{VALIDADE}}</b></div>
+  </div>
+</section>
+
+</body>
+</html>

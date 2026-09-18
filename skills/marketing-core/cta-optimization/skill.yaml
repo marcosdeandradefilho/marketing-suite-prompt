@@ -1,0 +1,171 @@
+name: cta-optimization
+description: Otimização de CTAs (Call-To-Action) — botões, subject lines, urgência
+version: 1.0
+tags:
+  - marketing
+  - copywriting
+  - conversion
+  - cta
+
+metadata:
+  focus: Button copy, Email subject lines, Link text, Urgency triggers
+  use_cases:
+    - Landing page buttons
+    - Email subject lines
+    - Ad headlines
+    - Social media CTAs
+    - Product pages
+
+---
+
+# CTA Optimization — Botões + Subject Lines que Convertem
+
+## Anatomia de um CTA que Converte
+
+Um bom CTA tem 4 elementos:
+
+### 1. **Verbo Ativo + Benefício**
+❌ Ruim: "Clique aqui"
+❌ Ruim: "Enviar"
+✅ Bom: "Garantir meu acesso agora"
+✅ Bom: "Receber checklist grátis"
+
+O verbo deve mostrar a ação E o resultado.
+
+### 2. **Primeira Pessoa (quando possível)**
+❌ "Download do guia"
+✅ "Baixar meu guia" ou "Quero meu guia"
+
+Cria senso de posse/pessoalidade.
+
+### 3. **Indicador de Urgência/Valor**
+✅ "Garantir meu acesso agora" (ação + time-bound)
+✅ "Receber checklist grátis" (value + ação)
+✅ "Ver resultados em 24h" (promise + timeline)
+
+### 4. **Tamanho/Contraste Visual**
+Botão deve ser:
+- **Grande o suficiente** (mobile-friendly)
+- **Cor de alto contraste** (standout, não blend)
+- **Branco espaço ao redor** (atenção focal)
+
+## Fórmula de CTA por Contexto
+
+### Landing Page (Hero/Above-fold)
+```
+[Verbo forte] + [Benefício específico] + [Urgência]
+
+Exemplos:
+- "Começar meu teste grátis de 7 dias"
+- "Garantir meu lugar (últimas 5 vagas)"
+- "Receber meu diagnóstico personalizado"
+- "Acessar o masterclass (liberado hoje)"
+```
+
+### Email Subject Line
+```
+[Curiosidade/Benefit] + [Pessoalidade] + [Urgência]
+
+Exemplos:
+- "3 passos para triplicar sua renda (hoje)"
+- "Seu teste grátis expira em 23h"
+- "[Seu nome], você está deixando R$10k na mesa"
+- "O que 1000+ criadores descobriram (você não sabe)"
+
+Comprimento ideal: 30-50 caracteres
+```
+
+### Ad Copy (Facebook/Google Ads)
+```
+[Emotional hook] + [Specific benefit] + [CTA]
+
+Exemplos:
+- "Cansado de ganhar pouco? Veja como triplicar + Saiba como"
+- "99% dos criadores não sabem isso + Descobrir grátis"
+- "Seu concorrente já fez isso + Começar agora"
+```
+
+### Social Media Post CTA
+```
+[Post natural] + [Soft CTA] + [Link in bio type]
+
+Exemplos:
+- "...e aí compartilho meu sistema lá no link (stories)"
+- "Se quer aprender, deixei tudo explicado no meu novo post"
+- "Comenta LANÇAMENTO abaixo 👇"
+```
+
+## Gatilhos de Urgência (Urgency Triggers)
+
+**Tempo:**
+- "Termina amanhã"
+- "Liberado por 48h apenas"
+- "Vagas fecham em 23h"
+
+**Escassez:**
+- "Últimas 5 vagas"
+- "Apenas 12 cupons de 30% restantes"
+- "Preço sobe para R$297 em 24h"
+
+**Medo de perda (Loss aversion):**
+- "Você vai perder acesso a..."
+- "Sem isso, você continuará..."
+- "Amanhã custa mais caro"
+
+**Social proof + Urgência:**
+- "50 pessoas compraram essa semana"
+- "Já 1.2k fizeram, você é o próximo?"
+
+## A/B Testing: CTAs que Ganham
+
+### Variação 1: Direto vs. Benefit-driven
+- A: "Comprar agora"
+- B: "Transformar minha vida em 30 dias"
+→ B geralmente ganha 20-40%
+
+### Variação 2: Urgência vs. Sem urgência
+- A: "Receber acesso"
+- B: "Receber acesso (últimas 10 vagas)"
+→ B geralmente ganha 15-35%
+
+### Variação 3: Cor (assumindo brand)
+- A: Cinza (padrão)
+- B: Laranja/Verde (alto contraste)
+→ B geralmente ganha 10-20%
+
+### Variação 4: Tamanho
+- A: Normal
+- B: 2x maior
+→ B geralmente ganha 5-15%
+
+## Checklist de CTA Antes de Publicar
+
+- [ ] Usa verbo ativo (garantir, receber, descobrir, começar, acessar)?
+- [ ] Tem benefício específico (não "clique aqui")?
+- [ ] Primeira pessoa quando possível ("meu", "eu", "para mim")?
+- [ ] Inclui urgência (prazo, número de vagas, preço)?
+- [ ] Contrasta visualmente com fundo?
+- [ ] Mobile-friendly (toque fácil)?
+- [ ] Cria curiosidade + clareza (não confunde)?
+
+## Exemplos Prontos para Copiar
+
+### Para Lives de Lançamento
+- "Garantir meu lugar na live (100 vagas)"
+- "Receber notificação quando começar"
+- "Acessar gravação + bonus (24h apenas)"
+
+### Para Landing Pages
+- "Começar meu teste grátis"
+- "Receber meu diagnóstico personalizado"
+- "Garantir preço de lançamento (R$97)"
+
+### Para Emails
+Subject: "Seu acesso gratuito expira em 6h"
+Subject: "[Seu nome], 50 pessoas já fizeram isso"
+Subject: "Quer saber o segredo dos 1000+ seguidores?"
+
+### Para Social
+- "Comenta LANÇAMENTO aqui 👇"
+- "Deixei tudo no link dos stories"
+- "Manda DM com GRÁTIS"
